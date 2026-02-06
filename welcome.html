@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Cabs Devakottai - 24/7 Taxi Service</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        header { background: linear-gradient(135deg, #00a651 0%, #00c679 100%); color: white; padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: #fff200; }
+        .cta-btn { background: #fff200; color: #00a651; padding: 0.8rem 1.5rem; border-radius: 30px; text-decoration: none; font-weight: bold; transition: transform 0.3s; }
+        .cta-btn:hover { transform: scale(1.05); }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(59, 58, 166, 0.8), rgba(0,166,81,0.8)), url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1920') center/cover; height: 100vh; display: flex; align-items: center; text-align: center; color: white; padding-top: 80px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; }
+        .hero .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .hero .cta { display: inline-block; background: #fff200; color: #00a651; padding: 1.2rem 2.5rem; border-radius: 50px; font-size: 1.2rem; font-weight: bold; text-decoration: none; transition: all 0.3s; }
+        .hero .cta:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #00a651; }
+        
+        /* About Section */
+        .about { background: #f8f9fa; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-stats { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .stat-item { text-align: center; margin-bottom: 2rem; }
+        .stat-number { font-size: 3rem; font-weight: bold; color: #00a651; }
+        
+        /* Fleet Section */
+        .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .fleet-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .fleet-card:hover { transform: translateY(-10px); }
+        .fleet-image { height: 250px; background-size: cover; background-position: center; }
+        .fleet-info { padding: 2rem; text-align: center; }
+        .fleet-info h3 { color: #00a651; margin-bottom: 1rem; }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card img { width: 80px; height: 80px; margin-bottom: 1rem; }
+
+        /* Testimonials */
+        .testimonials { background: #f8f9fa; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .testimonial { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        .stars { color: #fff200; font-size: 1.5rem; margin-bottom: 1rem; }
+
+        /* Booking */
+        .booking { background: linear-gradient(135deg, #00a651 0%, #00c679 100%); color: white; }
+        .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        form { display: flex; flex-direction: column; gap: 1rem; }
+        input, select, textarea { padding: 1rem; border: none; border-radius: 10px; font-size: 1rem; }
+        button { background: #fff200; color: #00a651; padding: 1rem; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: #fff; }
+
+        /* Footer */
+        footer { background: #00a651; color: white; text-align: center; padding: 2rem 0; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+        .social-links a { color: white; font-size: 1.5rem; transition: color 0.3s; }
+        .social-links a:hover { color: #fff200; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .cta-buttons { flex-direction: column; align-items: center; }
+            .about-content, .booking-grid { grid-template-columns: 1fr; }
+            .fleet-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🚕 Welcome Cabs</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#fleet">Fleet</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#booking">Book Now</a></li>
+            </ul>
+            <div class="hero-cta-buttons">
+                <a href="#booking-5seater" class="cta-btn">5 Seater</a>
+                <a href="#booking-7seater" class="cta-btn">7 Seater</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome Cabs Devakottai</h1>
+            <p>✅ 10+ Years Experience | ✅ 100% Safe & Secure | ✅ 24/7 Service</p>
+            <div class="cta-buttons">
+                <a href="#booking-5seater" class="cta">🚗 Book 5 Seater</a>
+                <a href="#booking-7seater" class="cta">🚐 Book 7 Seater</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Why Choose Welcome Cabs?</h2>
+            <div class="about-content">
+                <div>
+                    <h3>🛡️ 100% Safe & Secure Rides</h3>
+                    <ul style="font-size: 1.1rem; line-height: 2;">
+                        <li>✅ All drivers police verified with clean records</li>
+                        <li>✅ GPS tracking for every trip</li>
+                        <li>✅ 24/7 customer support</li>
+                        <li>✅ Child seat available on request</li>
+                        <li>✅ Emergency SOS button in every car</li>
+                        <li>✅ Fully insured vehicles & trips</li>
+                    </ul>
+                    <p><strong>10+ Years serving Devakottai & Sivaganga district</strong></p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div>Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">250K+</div>
+                        <div>Kilometers Driven</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div>On-Time Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fleet">
+        <div class="container">
+            <h2>Our Modern Fleet</h2>
+            <div class="fleet-grid">
+                <div class="fleet-card">
+                    <div class="fleet-image" style="background-image: url('https://wallpapercave.com/wp/wp2681433.jpg');"></div>
+                    <div class="fleet-info">
+                        <h3>🚗 Maruti Swift</h3>
+                        <p><strong>5 Seater</strong> | AC | Power Steering | Music System</p>
+                        <p>Perfect for local rides & small families</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-image" style="background-image: url('https://media.zigcdn.com/media/model/2023/Feb/front-1-4-left-1585763989_930x620.jpg');"></div>
+                    <div class="fleet-info">
+                        <h3>🚗 Wagon R</h3>
+                        <p><strong>5 Seater</strong> | Fuel Efficient | Spacious Boot</p>
+                        <p>Best for airport transfers & daily commute</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-image" style="background-image: url('https://imgcdn.oto.com/large/gallery/roadtest/37/332/suzuki-ertiga-front-side-view-986838.jpg');"></div>
+                    <div class="fleet-info">
+                        <h3>🚐 Ertiga</h3>
+                        <p><strong>7 Seater</strong> | Family MPV | Extra Legroom</p>
+                        <p>Ideal for outstation trips & large groups</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🚗</div>
+                <h3>Local Rides</h3>
+                <p>Devakottai city, railway station, hospitals, shopping</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🛣️</div>
+                <h3>Outstation</h3>
+                <p>Madurai, Trichy, Chennai, Karaikudi - One Way/Drop</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✈️</div>
+                <h3>Airport Transfers</h3>
+                <p>Madurai Airport, Trichy Airport - Pickup & Drop</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Swift car was super clean! Driver knew all shortcuts."</p>
+                    <strong>- Ravi K., Devakottai</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Ertiga perfect for family trip to Madurai. Very safe!"</p>
+                    <strong>- Priya S., Sivaganga</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Wagon R gave 25kmpl to Trichy! Best service."</p>
+                    <strong>- Kumar M., Karaikudi</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking-5seater" class="booking">
+        <div class="container">
+            <h2 id="booking">🚗 5 Seater Booking (Swift/Wagon R)</h2>
+            <div class="booking-grid">
+                <div>
+                    <p><strong>📱 WhatsApp:</strong> +91 9787242221</p>
+                    <p><strong>💰 Local:</strong> ₹11/km | <strong>Outstation:</strong> ₹10/km</p>
+                    <p><strong>✅ Swift:</strong> 4+1 | <strong>✅ Wagon R:</strong> 4+1</p>
+                </div>
+                <form id="form-5seater">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="text" name="from" placeholder="From (Pickup Location)">
+                    <input type="text" name="to" placeholder="To (Drop Location)">
+                    <input type="date" name="date">
+                    <select name="car">
+                        <option>Select Car</option>
+                        <option>Swift (4+1)</option>
+                        <option>Wagon R (4+1)</option>
+                    </select>
+                    <button type="submit">Book 5 Seater Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking-7seater" class="booking" style="background: linear-gradient(135deg, #00c679 0%, #00a651 100%);">
+        <div class="container">
+            <h2>🚐 7 Seater Booking (Ertiga)</h2>
+            <div class="booking-grid">
+                <div>
+                    <p><strong>📱 WhatsApp:</strong> +91 9787242221</p>
+                    <p><strong>💰 Local:</strong> ₹14/km | <strong>Outstation:</strong> ₹13/km</p>
+                    <p><strong>✅ Ertiga:</strong> 7 Seater | Extra Legroom | Family MPV</p>
+                </div>
+                <form id="form-7seater">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="text" name="from" placeholder="From (Pickup Location)">
+                    <input type="text" name="to" placeholder="To (Drop Location)">
+                    <input type="date" name="date">
+                    <button type="submit">Book 7 Seater Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Welcome Cabs Devakottai | 10+ Years Experience | Licensed & Insured</p>
+            <p>created by vijay...</p>
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">📱</a>
+                <a href="#">📸</a>
+                <a href="#">📞</a>
+            </div>
+        </div>
+    </footer>
+
+   <script>
+    // Smooth scrolling for all internal anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Reusable function to send booking details to WhatsApp
+    function sendToWhatsApp(formId, serviceType) {
+        const form = document.getElementById(formId);
+        if (!form) {
+            console.error(`Form with ID "${formId}" not found`);
+            return;
+        }
+
+        // Collect form values safely
+        const name  = form.querySelector('input[name="name"]')?.value.trim()  || '';
+        const phone = form.querySelector('input[name="phone"]')?.value.trim() || '';
+        const pickup = form.querySelector('input[name="from"]')?.value.trim()  || 'Not specified';
+        const drop   = form.querySelector('input[name="to"]')?.value.trim()    || 'Not specified';
+        const date   = form.querySelector('input[name="date"]')?.value        || 'Not specified';
+
+        let car = 'Not specified';
+        if (formId === 'form-5seater') {
+            car = form.querySelector('select[name="car"]')?.value || 'Not selected';
+        } else {
+            car = 'Ertiga (7 Seater)';
+        }
+
+        // Required fields validation
+        if (!name || !phone) {
+            alert('Please enter your Name and Phone Number to continue.');
+            return;
+        }
+
+        // Build the message (using \n for line breaks)
+        const message = 
+            `*New Booking Request - ${serviceType}*\n\n` +
+            `👤 Name: ${name}\n` +
+            `📞 Phone: ${phone}\n` +
+            `📍 Pickup: ${pickup}\n` +
+            `📍 Drop: ${drop}\n` +
+            `📅 Date: ${date}\n` +
+            `🚗 Car: ${car}\n\n` +
+            `🌐 Sent from Welcome Cabs website`;
+
+        // WhatsApp number (international format without + or spaces)
+        const waNumber = '919787242221';
+
+        // Properly encode the message (handles spaces, newlines, special characters, etc.)
+        const encodedMessage = encodeURIComponent(message);
+
+        // Construct WhatsApp URL
+        const whatsappUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+
+        // Open WhatsApp in new tab/window
+        window.open(whatsappUrl, '_blank');
+
+        // Optional: Give feedback to user
+        // alert('Booking details opened in WhatsApp!\nPlease review and send the message.');
+    }
+
+    // Attach submit handler to 5-seater form
+    const form5 = document.getElementById('form-5seater');
+    if (form5) {
+        form5.addEventListener('submit', function(e) {
+            e.preventDefault();
+            sendToWhatsApp('form-5seater', '5 Seater');
+        });
+    }
+
+    // Attach submit handler to 7-seater form
+    const form7 = document.getElementById('form-7seater');
+    if (form7) {
+        form7.addEventListener('submit', function(e) {
+            e.preventDefault();
+            sendToWhatsApp('form-7seater', '7 Seater');
+        });
+    }
+</script>
